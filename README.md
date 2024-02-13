@@ -22,9 +22,9 @@
 - [📝 License](#license)
 
 
-# 📖 Blog App <a name="about-project"></a>
+# 📖 Food Reciepe <a name="about-project"></a>
 
-**Blog App** is a Single page application created with Ruby on Rails framework. In this project, the webapp renders the list of the existing blog posts and will be able to interact with the posts by liking posts and adding comments.
+**Food Reciepe** is a Single page application created with Ruby on Rails framework. In this project, the webapp renders the list of the existing blog posts and will be able to interact with the posts by liking posts and adding comments.
 
 ## 🛠 Built With <a name="built-with"></a>
 
