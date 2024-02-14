@@ -1,0 +1,28 @@
+<div class="col-md-12">
+	<div class="media blog-media">
+		<div class="media-body">
+            <div class="formal-display">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div>
+                                <a href="/recipes/<%=recipe.id%>">
+                                    <h1 class="mt-4 display-4">
+                                        <%= recipe.name%>
+                                    </h1>
+                                </a>
+                                <br/>
+                                <%= button_to 'REMOVE', recipe, class: 'btn btn-danger', method: :delete %>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <p class="recipe-card-p"><%= truncate(recipe.description, length: 100, omission: '.....') %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+</div>
