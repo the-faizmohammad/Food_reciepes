@@ -1,15 +1,500 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+/* General */
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Blog Styles */
+.my-blog {
+  padding-top: 80px;
+  padding-bottom: 50px;
+}
+
+.my-bio {
+  padding-top: 15px;
+  padding-bottom: 35px;
+}
+
+@media (min-width: 992px) {
+  .my-blog {
+    padding-top: 100px;
+    padding-bottom: 20px;
+  }
+}
+
+.my-blog .section-title {
+  padding-bottom: 15px;
+}
+
+.my-blog .media {
+  margin-top: 50px;
+}
+
+@media (min-width: 768px) {
+  .my-blog .media {
+    margin-top: 30px;
+  }
+}
+
+/* Media Styles */
+.media.blog-media {
+  margin-top: 30px;
+  position: relative;
+  display: block;
+}
+
+@media (min-width: 992px) {
+  .media.blog-media {
+    display: inline-flex;
+    width: 100%;
+  }
+}
+
+/* Media Info Styles */
+.media-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.media-info ul {
+  display: flex;
+  justify-content: flex-end;
+  list-style-type: none;
+  padding-right: 15px;
+}
+
+.media-info li {
+  font-family: 'inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 133%;
+  color: #fff;
+  text-align: center;
+  margin-right: 32px;
+}
+
+/* Circle Styles */
+.media.blog-media .circle {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  position: absolute;
+  padding: 0;
+  top: 20px;
+  left: 20px;
+  text-align: center;
+  box-shadow: none;
+  transform: translateX(0);
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.media.blog-media .circle .day {
+  color: #fff;
+  transition: color 0.25s ease;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1;
+  margin-top: 12px;
+}
+
+.media.blog-media .circle .month {
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+/* Image Styles */
+.media.blog-media > a {
+  position: relative;
+  display: block;
+}
+
+@media (min-width: 992px) {
+  .media.blog-media > a {
+    display: table-cell;
+    vertical-align: top;
+    min-width: 200px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .media.blog-media > a {
+    min-width: 230px;
+  }
+}
+
+/* Hover Styles */
+.media.blog-media:hover > a::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.media.blog-media:hover .circle {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.media.blog-media:hover .circle .day,
+.media.blog-media:hover .circle .month {
+  color: #222;
+}
+
+/* Media Body Styles */
+.media.blog-media .media-body {
+  border: 1px solid #efeff3;
+  padding: 30px 30px 10px;
+  font-size: 14px;
+  background: #fff;
+  border-top: none;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+@media (min-width: 992px) {
+  .media.blog-media .media-body {
+    padding: 15px 20px 10px;
+    border-top: 1px solid #efeff3;
+    border-left: none;
+    vertical-align: top;
+    margin-left: 15px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .media.blog-media .media-body {
+    padding: 30px 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .media.blog-media .media-body h5 {
+    font-size: 15px;
+  }
+}
+
+/* List Styles */
+.media.blog-media .media-body ul {
+  padding: 10px 20px 0 0;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.media.blog-media .media-body ul li {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.media.blog-media .media-body ul li::before {
+  position: absolute;
+  content: '';
+  top: 5px;
+  left: 0;
+  width: 1px;
+  height: 14px;
+  background: #eeeef2;
+}
+
+.media.blog-media .media-body ul li:first-child::before {
+  visibility: hidden;
+}
+
+.media.blog-media .media-body ul::before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #eeeef2;
+}
+
+/* Slider Styles */
+.toggle-button {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  background-color: #0096ff;
+  border-radius: 15px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.toggle-button-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.slider.slide {
+  transform: translateX(30px);
+}
+
+.toggle-button.public-color {
+  background-color: greenyellow;
+}
+
+/* Table Styles */
+.table {
+  width: 100%;
+  margin-top: 1rem;
+  border: 1px solid #000;
+}
+
+.table thead tr {
+  width: 100%;
+}
+
+.tableheader {
+  background-color: #f8f9fa;
+  display: flex;
+  border: 1px solid #e3effc;
+}
+
+.tablecol {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+  border-left: 1px solid #000;
+  width: 33.33%;
+}
+
+.tablebody {
+  background-color: #fff;
+}
+
+table.dataTable.no-footer {
+  border: 1px solid #111;
+}
+
+table.dataTable th {
+  width: 33.33%;
+}
+
+table.dataTable thead th {
+  border-bottom: 0;
+  border-right: 1px solid black;
+}
+
+td.tablecol.modify-delete-actions {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* Miscellaneous Styles */
+.formatrecipeview {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+}
+
+.sign-up-container,
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#user_name,
+#user_surname,
+#user_email,
+#user_password,
+#user_password_confirmation {
+  width: 100%;
+  padding: 4px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+#sign-up-button,
+#login-button {
+  width: 100%;
+  padding: 8px;
+  background-color: rgba(15, 15, 15, 0.9);
+  color: #fff;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+}
+
+#new_user {
+  min-width: 235px;
+}
+
+.mx-5 {
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+li.nav-item {
+  font-weight: 500;
+  padding: 0 12px;
+  font-size: 1.2rem;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.each-public-recipe-container {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.each-recipe-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 1.2rem;
+}
+
+.each-public-recipe-container h1,
+.each-public-recipe-container h2,
+.each-recipe-container h1,
+.each-recipe-container h2,
+.shopping-list-container h1,
+.new-recipe-container h1 {
+  text-align: center;
+  text-decoration: underline;
+  margin: 14px;
+}
+
+.each-recipe-p-tag {
+  font-size: 1.2rem;
+}
+
+.each-recipe-span {
+  font-weight: 500;
+}
+
+.shop-items-container {
+  display: flex;
+  justify-content: center;
+  margin: 14px 0;
+}
+
+.row.recipe-ingredients-container {
+  border-bottom: 2px dotted;
+}
+
+.container.recipe-inner-container {
+  margin: 2% 0 4% 0;
+}
+
+.recipe-card-p {
+  font-size: 1.2rem;
+}
+
+.new-food-container,
+.new-food-form-outer-container,
+.new-recipe-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+form#recipe-add-food-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+#recipe-add-food-form .field {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+input#add-food-action {
+  border: none;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  outline: none;
+  border-radius: 4px;
+}
+
+.row.add-food-item-action,
+.add-recipe-action-container {
+  justify-content: flex-end;
+  margin: 0 0 4% 0;
+}
+
+.section-title.text-center.title-ex1 {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.heading-info {
+  flex-direction: column;
+}
+
+form#new-food-item-form,
+form#add-new-recipe-form {
+  display: flex;
+  flex-direction: column;
+  min-width: 235px;
+}
+
+.new-food-form-field,
+#add-new-recipe-form .field {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+#add-new-recipe-form .field {
+  gap: 0;
+}
+
+.public-checkbox {
+  margin: 0 0 0 0;
+}
+
+input#add-food-item-action,
+input#add-recipe-action {
+  margin: 11% 0;
+  border: none;
+  background: #000;
+  color: #fff;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.total-foods-value {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 4% 0;
+}

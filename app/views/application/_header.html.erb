@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid mx-5">
+    <%= link_to 'Recipe Application', root_path, class: 'navbar-brand' %>
+    <div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class = "nav-item">
+            <%= link_to 'All Recipes', public_recipes_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Foods', foods_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'My Recipes', recipes_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Shopping List', general_shopping_lists_path, class: 'nav-link' %>
+          </li>
+        </ul>
+        <div class="d-flex">
+          <% if user_signed_in? %>
+            <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class: ['btn', 'btn-outline-success'] %>
+          <% else %>
+            <li>  <%= link_to 'Login', user_session_path, class: ['btn', 'btn-outline-success'] %></li>
+            <li>  <%= link_to 'Sign up', new_user_registration_path, class: ['btn', 'btn-outline-success'] %></li>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

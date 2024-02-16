@@ -1,0 +1,19 @@
+<section class="my-blog bg-secondary bg-gradient">
+    <div class="container">
+		<!-- section title -->
+		<div class="row justify-content-md-center">
+			<div class="col-xl-5 col-lg-6 col-md-8">
+				<div class="section-title text-center title-ex1 heading-info">
+					<h2>Public Recipes by Users</h2>
+					<p>Click the Recipe to view Details</p>
+				</div>
+			</div>
+		</div>
+		<!-- section title ends -->
+		<div class="row">
+			<% @public_recipes.each do |recipe| %>
+            	<%= render partial: 'publicrecipe', locals: { recipe: recipe } %>
+			<% end %>
+		</div>    
+	</div>
+</section>

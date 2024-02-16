@@ -1,0 +1,80 @@
+<div class="each-recipe-container">
+  <div class="container recipe-inner-container">
+    <div class="row">
+      <h1><%= @recipe.name %></h1>
+      <div class="col-md-6">
+        <p>Preparation Time: <%= @recipe.preparation_time %></p>
+        <p>Cooking Time: <%= @recipe.cooking_time %></p>
+        <p>Description: <%= @recipe.description %></p>
+      </div>
+      <div class="col-md-6">
+        <div class="formatrecipeview">
+          <div class="makepublicform">
+            <%= form_with(model: @recipe, url: recipe_path(@recipe), method:
+            :patch) do |form| %>
+            <div
+              class="toggle-button-container d-flex align-items-center justify-content-around"
+              onclick="togglePublic();"
+            >
+              <span class="toggle-text" id="toggleText">
+                <%= @recipe.public ? 'Toggle Private' : 'Toggle Public' %>
+              </span>
+              <%= form.hidden_field :public, value: @recipe.public, id:
+              'public-toggle-field' %> <%= form.label :public, class:
+              'toggle-button', for: 'public-toggle-field' do %>
+              <div class="slider <%= 'slide' if @recipe.public %>"></div>
+              <% end %>
+            </div>
+            <%= form.submit "Save", id: 'save-button', style: 'display: none;' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="formatrecipeview">
+    <div class="container">
+      <div class="row recipe-ingredients-container">
+        <div class="col-md-6 shop-items-container">
+          <%= link_to 'Generate General Shopping List',
+          general_shopping_lists_path, class:'btn btn-secondary' %>
+        </div>
+        <div class="col-md-6 shop-items-container">
+          <%= link_to 'Add Ingredients', new_recipe_recipe_food_path(@recipe),
+          class:'btn btn-secondary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap Table for Ingredients -->
+  <h2 class="lefth2">Ingredients</h2>
+  <table class="table" id="RecipeIngredientsTable">
+    <thead>
+      <tr class="tableheader">
+        <th class="tablecol sortable">Foods</th>
+        <th class="tablecol sortable">Quantity</th>
+        <th class="tablecol sortable">Value</th>
+        <th class="tablecol sortable">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recipe.recipe_foods.each do |recipe_food| %>
+      <tr class="tableheader">
+        <td class="tablecol"><%= recipe_food.food_name.name %></td>
+        <td class="tablecol">
+          <%= recipe_food.quantity %><%= recipe_food.food_name.measurement_unit %>
+        </td>
+        <td class="tablecol">$<%= recipe_food.value %></td>
+        <td class="tablecol modify-delete-actions">
+          <%= link_to 'Modify', edit_recipe_recipe_food_path(@recipe,
+          recipe_food), class:'btn btn-secondary' %>
+          <%= button_to 'Remove',
+          recipe_recipe_food_path(@recipe, recipe_food), class:'btn
+          btn-secondary', method: :delete %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,16 +1,92 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>FoodRecipes</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Food Recipe App</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  
+  <!-- jQuery -->
+  <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <!-- DataTables CSS and JS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 
-  <body>
+  <!-- DataTables Bootstrap Extension JS -->
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
+  <%= javascript_importmap_tags %>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+  <%= render 'application/header' %>
+  <div class="container mt-2">
     <%= yield %>
-  </body>
+  </div>
+
+  <!-- Bootstrap Alert Components for Notice and Alert -->
+  <% if notice.present? %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+
+  <% if alert.present? %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <%= alert %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+  <!-- End of Bootstrap Alert Components -->
+
+  <%= render 'application/footer' %>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Check the initial state and apply styles accordingly
+      var slider = document.querySelector('.slider');
+      var publicToggleField = document.getElementById('public-toggle-field');
+
+      if (publicToggleField.value === 'true') {
+        slider.classList.add('slide');
+      }
+    });
+    $(document).on('turbo:load', function() {
+      $('#FoodIngredientsTable').DataTable();
+      $('#FoodItemsTable').DataTable();
+      $('#ShoppingListTable').DataTable();
+    });
+
+    function togglePublic() {
+      var publicToggleField = document.getElementById('public-toggle-field');
+      var toggleText = document.getElementById('toggleText');
+      var slider = document.querySelector('.slider');
+      var saveButton = document.getElementById('save-button');
+
+      // Toggle the value and text based on the current state
+      if (publicToggleField.value === 'true') {
+        publicToggleField.value = 'false';
+        toggleText.innerText = 'Toggle Public';
+      } else {
+        publicToggleField.value = 'true';
+        toggleText.innerText = 'Toggle Private';
+      }
+
+      // Toggle the sliding effect
+      slider.classList.toggle('slide');
+
+      // Toggle the color based on the toggle state
+      var toggleButtonContainer = document.querySelector('.toggle-button');
+      toggleButtonContainer.classList.toggle('public-color', publicToggleField.value === 'true');
+
+      // Automatically submit the form when the toggle state changes
+      saveButton.click();
+    }
+  </script>
+</body>
 </html>

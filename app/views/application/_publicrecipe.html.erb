@@ -1,0 +1,23 @@
+<div class="col-md-12">
+	<div class="media blog-media">
+		<div class="media-body ">
+		    <div class="title-name-container">
+				<a href="/public_recipes/<%=recipe.id%>">
+					<h1 class="mt-4 display-4">
+						<%= recipe.name%>
+					</h1>
+				</a>
+				<br/>
+				<h2>By: <%= recipe.user.name %></h2>
+			</div>
+			<ul class="d-flex">
+				<li>
+					<h3>Total food items: <%= recipe.recipe_foods.count %></h3>
+				</li>
+                <li>
+                    <h3>Total price: $<%= recipe.recipe_foods.sum { |rf| rf.quantity * rf.food_name.price } %></h3>
+                </li>
+			</ul>
+		</div>
+	</div>
+</div>
